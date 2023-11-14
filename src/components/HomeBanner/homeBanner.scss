@@ -1,0 +1,51 @@
+
+.homeBanner-container {
+  min-height: 45rem;
+  background-color: #4158d0;
+  background-image: linear-gradient(
+    -100deg,
+    #4158d0 0%,
+    #c850c0 46%,
+    #ffcc70 100%
+  );
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  gap: 10rem;
+ 
+  .homeBan-image {
+    display: flex;
+    height: 30rem;
+    width: 30rem;
+    .homeBanImage {
+      height: 100%;
+      width: 100%;
+    }
+  }
+  .homeBanner-text {
+    background-color: #ffffff67;
+    color: #ffffff;
+    width: 20rem;
+    height: 30rem;
+    border-radius: 15px;
+    padding: 1rem;
+    .homeBan-heading {
+      line-height: 2rem;
+      
+      font-family: "Archivo Black", sans-serif;
+      .sp1 {
+        font-size: 2rem;
+      }
+      .sp2 {
+        font-size: 3rem;
+      }
+    }
+    .homeBanner-para {
+  
+      margin-top: 1rem;
+      font-family: "Roboto", sans-serif;
+      font-size: 1.2rem;
+      text-align: justify;
+    }
+  }
+}

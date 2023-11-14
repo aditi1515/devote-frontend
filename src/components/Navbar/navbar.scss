@@ -1,0 +1,76 @@
+.navbar-container {
+  // position: fixed; /* Set the navbar to fixed position */
+  // top: 0; /* Position the navbar at the top of the page */
+  // width: 100%; /* Full width */
+  background-color: #4158d0;
+  background-image: linear-gradient(
+    -43deg,
+    #4158d0 0%,
+    #c850c0 46%,
+    #ffcc70 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+
+  .navbar-left {
+    padding: 1rem;
+    display: flex;
+
+    gap: 2rem;
+    align-items: center;
+    .logo {
+      font-family: "Londrina Solid", sans-serif;
+      font-size: 2rem;
+      background-color: #ffffff;
+      padding: 5px;
+      border-radius: 15px;
+      cursor: pointer;
+      text-decoration: none;
+      color: black;
+    }
+    .options-list {
+      align-self: last baseline;
+      list-style: none;
+      font-family: "Poppins", sans-serif;
+      display: flex;
+      gap: 2rem;
+      color: #ffffff;
+      cursor: pointer;
+      text-decoration: none;
+    }
+  }
+  .navbar-right {
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 2rem;
+
+    .btn-1 {
+      border-radius: 25px;
+      font-weight: bold;
+      background: none;
+      color: #ffffff;
+      padding: 5px 15px 5px 15px;
+      border: 1px solid #ffffff;
+      cursor: pointer;
+      font-family: "Poppins", sans-serif;
+    }
+    .btn-2 {
+      border-radius: 25px;
+      padding: 5px 20px 5px 20px;
+      font-weight: bold;
+      width: fit-content;
+      background-color: #ffffff;
+      border: none;
+      cursor: pointer;
+      font-family: "Poppins", sans-serif;
+      &:hover {
+        background-color: #c850c0;
+        color: #ffffff;
+      }
+    }
+  }
+}
