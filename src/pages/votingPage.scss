@@ -1,16 +1,23 @@
 .votingPage-container {
-  min-height: 40rem;
+  min-height: 90vh;
   background-color: #4158d0;
-  background-image: linear-gradient(
-    -100deg,
-    #4158d0 0%,
-    #c850c0 46%,
-    #ffcc70 100%
-  );
+  background-image: linear-gradient(-100deg,
+      #4158d0 0%,
+      #c850c0 46%,
+      #ffcc70 100%);
+
   .contestTitle {
     text-align: center;
     color: white;
   }
+
+  .participants-card-wrapper {
+    display: flex;
+    justify-content: left;
+    gap: 2rem;
+    margin: 3rem;
+  }
+
   .participant-card-container {
     background-color: #ffffff67;
     color: #ffffff;
@@ -23,24 +30,29 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+
     .participant-Image {
       height: 7rem;
       width: 7rem;
-      > img {
+
+      >img {
         height: 100%;
         width: 100%;
         object-fit: cover;
         border-radius: 50%;
       }
     }
+
+
     .participant-details {
       height: 5rem;
       width: fit-content;
 
-      > h5 {
+      >h5 {
         font-size: 1.5rem;
       }
     }
+
     .votingPage-button {
       background: none;
       background-color: #d43cd8;

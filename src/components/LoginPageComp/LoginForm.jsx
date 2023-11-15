@@ -1,32 +1,43 @@
-import React, { useState } from "react";
-import { URL } from "../../config/data.js";
 import axios from "axios";
-import "./loginform.scss";
-import { useDispatch } from "react-redux";
-import { login } from "../../config/userReducer.js";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toggleLoader } from "../../config/LoaderReducer.js";
+import { URL } from "../../config/data.js";
+import { login } from "../../config/userReducer.js";
+import "./loginform.scss";
 export const LoginForm = () => {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { loaderActive } = useSelector((state) => state.loaderState);
   async function handleSignIn() {
-    const response = await axios.post(
-      `${URL}/user/login`,
-      {
-        userID: username,
-        password: password,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
+    dispatch(toggleLoader(true))
+    try {
+      const response = await axios.post(
+        `${URL}/user/login`,
+        {
+          userID: username,
+          password: password,
         },
-        withCredentials: true,
-        credentials: "include",
-      }
-    );
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+          credentials: "include",
+        }
+      );
 
-    dispatch(login(response?.data?.user));
+      dispatch(login(response?.data?.user));
+    } catch (error) {
+      console.log(error);
+    }
+    finally {
+      dispatch(toggleLoader(false))
+    }
+
     navigate("/");
   }
   return (

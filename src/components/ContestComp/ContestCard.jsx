@@ -1,30 +1,40 @@
-import React from "react";
-import "./contestCard.scss";
-import { useSelector } from "react-redux";
 import axios from "axios";
-import { URL } from "../../config/data";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toggleLoader } from "../../config/LoaderReducer";
+import { URL } from "../../config/data";
+import "./contestCard.scss";
 export const ContestCard = ({ contest, idx }) => {
   const { user } = useSelector((state) => state.userState);
   console.log(user);
 
-
+  const dispatch = useDispatch()
   const navigate = useNavigate();
   async function handleParticipate() {
-    const res = await axios.post(
-      `${URL}/voting/requestToParticipate`,
-      {
-        contestIdx: idx,
-        userID: user.userID,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
+    dispatch(toggleLoader(true))
+    try {
+      const res = await axios.post(
+        `${URL}/voting/requestToParticipate`,
+        {
+          contestIdx: idx,
+          userID: user.userID,
         },
-        withCredentials: true,
-      }
-    );
-    console.log(res);
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+    finally {
+      dispatch(toggleLoader(false))
+      location.reload();
+    }
   }
   //contest button conditions
   let button;
@@ -44,12 +54,12 @@ export const ContestCard = ({ contest, idx }) => {
       );
     }
   } else if (contest.isContestEnded) {
-    button = <button className="contest-button">Result</button>;
+    button = <button className="contest-button" onClick={() => navigate("/result/" + idx)}>Result</button>;
   } else if (contest.isContestStarted) {
     if (contest.hasVoted.includes(user.userID)) {
       button = <button className="contest-button-disabled">Voted</button>;
     } else {
-      button = <button className="contest-button" onClick={() => navigate("/vote/"+idx)}>Vote</button>;
+      button = <button className="contest-button" onClick={() => navigate("/vote/" + idx)}>Vote</button>;
     }
   }
   //contest status conditions

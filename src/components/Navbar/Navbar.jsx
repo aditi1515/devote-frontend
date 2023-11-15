@@ -5,13 +5,12 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { logout } from "../../config/userReducer";
-import { contestsAdded } from "../../config/contestReducer";
+
 import { useNavigate } from "react-router-dom";
 import { URL } from "../../config/data.js";
 
 export const Navbar = () => {
   const userState = useSelector((state) => state.userState);
-  console.log("UserState", userState);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -23,24 +22,7 @@ export const Navbar = () => {
     navigate("/login");
   }
 
-  async function handleContests() {
-    try {
-      const response = await axios.post(
-        `${URL}/voting/getAllContests`,
-        {},
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
-      );
-      console.log(response?.data?.contests);
-      dispatch(contestsAdded(response?.data?.contests));
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  
   return (
     <div className="navbar-container">
       <div className="navbar-left">
@@ -62,7 +44,6 @@ export const Navbar = () => {
               <Link
                 className="options-list"
                 to="/contests"
-                onClick={handleContests}
               >
                 CONTESTS
               </Link>
