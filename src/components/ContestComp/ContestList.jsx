@@ -17,7 +17,6 @@ export const ContestList = () => {
 
 
   useEffect(() => {
-    console.log("here");
     async function handleContests() {
       dispatch(toggleLoader(true))
       try {

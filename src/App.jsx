@@ -8,7 +8,10 @@ import { Navbar } from "./components/Navbar/Navbar";
 import { toggleLoader } from "./config/LoaderReducer";
 import { URL } from "./config/data.js";
 import { login } from "./config/userReducer.js";
+import AdminContestPage from "./pages/AdminContestPage.jsx";
+import AdminPage from "./pages/AdminPage.jsx";
 import { ContestPage } from "./pages/ContestPage";
+import CreateContest from "./pages/CreateContest.jsx";
 import { HomePage } from "./pages/HomePage";
 import { LeaderboardPage } from "./pages/LeaderboardPage";
 import { LoginPage } from "./pages/LoginPage";
@@ -61,6 +64,10 @@ function App() {
         <Route path="/contests" element={<ContestPage />} />
         <Route path="/vote/:idx" element={<VotingPage />} />
         <Route path="/result/:idx" element={<ResultPage />} />
+        <Route path="/admin/contest/:idx" element={<AdminContestPage />} />
+        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/admin/new_contest" element={<CreateContest />} />
+        <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
 
 

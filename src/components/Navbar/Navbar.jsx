@@ -1,16 +1,15 @@
-import React from "react";
-import "./navbar.scss";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { logout } from "../../config/userReducer";
+import "./navbar.scss";
 
 import { useNavigate } from "react-router-dom";
 import { URL } from "../../config/data.js";
 
 export const Navbar = () => {
-  const userState = useSelector((state) => state.userState);
+  const { isAdmin, isAuthenticated } = useSelector((state) => state.userState);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -22,7 +21,7 @@ export const Navbar = () => {
     navigate("/login");
   }
 
-  
+
   return (
     <div className="navbar-container">
       <div className="navbar-left">
@@ -31,7 +30,7 @@ export const Navbar = () => {
             DeVote
           </Link>
         </span>
-        {userState?.isAuthenticated && (
+        {isAuthenticated && (
           <ul className="options-list">
             <li>
               {" "}
@@ -48,6 +47,11 @@ export const Navbar = () => {
                 CONTESTS
               </Link>
             </li>
+            {
+              isAdmin && (<li>
+                <Link className="options-list" to="/admin">Admin</Link>
+              </li>)
+            }
             {/* <li>
               {" "}
               <Link className="options-list" to="/leaderboard">
@@ -57,7 +61,7 @@ export const Navbar = () => {
           </ul>
         )}
       </div>
-      {userState.isAuthenticated && (
+      {isAuthenticated && (
         <div className="navbar-right">
           {/* <button className="btn-1">BECOME CANDIDATE</button> */}
           <button className="btn-2" onClick={handleSignout}>
