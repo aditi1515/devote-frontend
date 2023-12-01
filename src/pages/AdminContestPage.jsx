@@ -97,7 +97,7 @@ const AdminContestPage = () => {
 
         <div className='tableContainer'>
           {
-            activeTab === 0 ? participantsTable(requestParticipants, idx, true) : activeTab === 1 ? participantsTable(currContest?.participants, idx, false) : participantsTable(currContest?.hasVoted, false)
+            activeTab === 0 ? participantsTable(requestParticipants, idx, true, true) : activeTab === 1 ? participantsTable(currContest?.participants, idx, false, true) : participantsTable(currContest?.hasVoted, false, false)
           }
         </div>
       </div>
@@ -106,7 +106,7 @@ const AdminContestPage = () => {
   )
 }
 
-const participantsTable = (participants, contestIdx, showAction) => {
+const participantsTable = (participants, contestIdx, showAction, showAllDetails) => {
   const [participantsList, setParticipantsList] = useState([])
   const { loaderActive } = useSelector((state) => state.loaderState);
   const { user } = useSelector((state) => state.userState);
@@ -178,14 +178,26 @@ const participantsTable = (participants, contestIdx, showAction) => {
         loaderActive ? <ShortLoader /> : (<table className="styled-table">
           <thead>
             <tr>
-              <th>Image</th>
+              {/* <th>Image</th> */}
               <th>UserId</th>
-              <th>Name</th>
-              <th>Age</th>
-              <th>Email</th>
-              <th>Admin</th>
-              <th>Address</th>
-              <th>Constituency</th>
+              {
+                showAllDetails && <th>Name</th>
+              }
+              {
+                showAllDetails && <th>Age</th>
+              }
+              {
+                showAllDetails && <th>Email</th>
+              }
+              {
+                showAllDetails && <th>Is Owner</th>
+              }
+              {
+                showAllDetails && <th>Address</th>
+              }
+              {
+                showAllDetails && <th>Constituency</th>
+              }
               {showAction && <th>Action</th>}
             </tr>
           </thead>
@@ -193,14 +205,27 @@ const participantsTable = (participants, contestIdx, showAction) => {
             {
               participantsList?.map((participant, index) => (<tr>
 
-                <td>Image</td>
+                {/* <td>Image</td> */}
                 <td>{participant?.userID}</td>
-                <td>{participant?.firstName + " " + participant?.lastName}</td>
-                <td>{participant?.age}</td>
-                <td>{participant?.email}</td>
-                <td>{participant?.isOwner ? "true" : "false"}</td>
-                <td>{participant?.address}</td>
-                <td>{participant?.voterConstituency}</td>
+                {
+                  showAllDetails && <td>{participant?.name}</td>
+                }
+                {
+                  showAllDetails && <td>{participant?.age}</td>
+                }
+                {
+                  showAllDetails && <td>{participant?.email}</td>
+                }
+                {
+                  showAllDetails && <td>{participant?.isOwner ? "true" : "false"}</td>
+                }
+                {
+                  showAllDetails && <td>{participant?.address}</td>
+                }
+                {
+                  showAllDetails && <td>{participant?.voterConstituency}</td>
+                }
+
                 {showAction && <td><button className='btn' onClick={() => handleAddToParticipants(participant?.userID)}>Approve</button></td>}
               </tr>))
             }
