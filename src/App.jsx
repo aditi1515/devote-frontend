@@ -17,7 +17,7 @@ import { LeaderboardPage } from "./pages/LeaderboardPage";
 import { LoginPage } from "./pages/LoginPage";
 import ResultPage from "./pages/ResultPage";
 import { SignUpPage } from "./pages/SignUpPage";
-import VotingPage from "./pages/votingPage";
+import VotingPage from "./pages/VotingPage.jsx";
 function App() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
