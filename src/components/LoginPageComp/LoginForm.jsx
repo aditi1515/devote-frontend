@@ -57,7 +57,7 @@ export const LoginForm = () => {
           />
           <h3 className="field-label">Password</h3>
           <input
-            type="text"
+            type="password"
             className="form-inputs"
             onChange={(e) => setPassword(e.target.value)}
           />
