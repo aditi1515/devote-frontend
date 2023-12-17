@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toggleLoader } from "../../config/LoaderReducer.js";
 import { URL } from "../../config/data.js";
 import { login } from "../../config/userReducer.js";
@@ -70,7 +70,7 @@ export const LoginForm = () => {
           <p className="forgot-pass">forgot password?</p>
         </div>
         <p className="sign-up">
-          Not registered yet? <span className="signup-Link">Sign Up</span>
+          Not registered yet? <span className="signup-Link"><Link className="link" to={'/signup'}>Sign Up</Link></span>
         </p>
       </div>
     </div>

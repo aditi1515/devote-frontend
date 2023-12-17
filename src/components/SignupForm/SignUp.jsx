@@ -1,6 +1,9 @@
 import React from "react";
 import "./signup.scss"
+import { Link } from "react-router-dom";
 export const SignUp = () => {
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
   return (
     <div className="signup-main-container">
       <div className="signup-imageContainer">
@@ -31,10 +34,10 @@ export const SignUp = () => {
         </div>
         <div className="signup-forgotPass">
           {" "}
-          <button className="signup-btn">Sign In</button>
+          <button className="signup-btn" >Sign In</button>
         </div>
         <p className="signUp">
-          Already registered? <span className="signup-Link">Login</span>
+          Already registered? <span className="signup-Link"><Link className="link" to={"/login"}>Login</Link></span>
         </p>
       </div>
     </div>
