@@ -1,5 +1,5 @@
-// export const URL = "https://de-vote-api.vercel.app"
-export const URL = "http://localhost:3000";
+export const URL = "https://de-vote-api.vercel.app"
+// export const URL = "http://localhost:3000";
 
 export const VoteData = [
  {
